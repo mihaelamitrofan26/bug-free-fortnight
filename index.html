@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV – Mihaela Mitrofan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --soft: #f5f2ee;
+    --cream: #faf8f5;
+    --accent: #8b4a6b;
+    --gold: #c9a96e;
+    --muted: #7a7068;
+    --rule: #ddd5c8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    box-shadow: 0 4px 60px rgba(0,0,0,0.08);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--ink);
+    color: white;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sidebar::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.18;
+  }
+
+  .sidebar::after {
+    content: '';
+    position: absolute;
+    bottom: 40px; right: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.12;
+  }
+
+  .photo-wrap {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .photo-ring {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    padding: 4px;
+    background: transparent;
+  }
+
+  .photo-inner {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent) 0%, #5a2d4a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: white;
+    letter-spacing: 2px;
+  }
+
+  .name-block {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .name-block h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    color: white;
+  }
+
+  .name-block .tagline {
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .sidebar-section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar-section h3 {
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(201,169,110,0.3);
+  }
+
+  .contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.4;
+  }
+
+  .contact-list .icon {
+    min-width: 16px;
+    color: var(--gold);
+    font-size: 13px;
+    margin-top: 1px;
+  }
+
+  /* Language bars */
+  .lang-item {
+    margin-bottom: 14px;
+  }
+
+  .lang-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+  }
+
+  .lang-name {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .lang-level {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .lang-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .lang-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--accent));
+  }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .skill-tag {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(201,169,110,0.3);
+    color: rgba(255,255,255,0.8);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .about-block {
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+  }
+
+  .about-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #3a3530;
+    font-style: italic;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .timeline {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 97px;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+    background: var(--rule);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 97px 1fr;
+    gap: 0 24px;
+    padding-bottom: 22px;
+    position: relative;
+  }
+
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .tl-date {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+    text-align: right;
+    padding-top: 3px;
+    line-height: 1.3;
+  }
+
+  .tl-content {
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .tl-content::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 7px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid white;
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  .tl-type {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .tl-title {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .tl-sub {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* Hobbies */
+  .hobbies-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: var(--soft);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .hobbies-item .hobby-icon {
+    font-size: 22px;
+  }
+
+  .hobbies-item p {
+    font-size: 13.5px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  @media print {
+    body { margin: 0; }
+    .page { margin: 0; box-shadow: none; max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="photo-wrap">
+      <div class="photo-ring">
+        <div class="photo-inner">MM</div>
+      </div>
+    </div>
+
+    <div class="name-block">
+      <h1>Mihaela<br>Mitrofan</h1>
+      <p class="tagline">Student · Creator</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="sidebar-section">
+      <h3>Contact</h3>
+      <ul class="contact-list">
+        <li>
+          <span class="icon">📍</span>
+          <span>Sat. Tartaul, r. Cantemir<br>Cahul, Moldova</span>
+        </li>
+        <li>
+          <span class="icon">📧</span>
+          <span>mihaelamitrofan05@gmail.com</span>
+        </li>
+        <li>
+          <span class="icon">📞</span>
+          <span>(+373) 78 304 192</span>
+        </li>
+        <li>
+          <span class="icon">🎂</span>
+          <span>06 februarie 2006</span>
+        </li>
+        <li>
+          <span class="icon">🌍</span>
+          <span>Cetățenie: moldoveană</span>
+        </li>
+        <li>
+          <span class="icon">in</span>
+          <span>Mihaela Mitrofan</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Languages -->
+    <div class="sidebar-section">
+      <h3>Limbi Străine</h3>
+
+      <div class="lang-item">
+        <div class="lang-header">
+          <span class="lang-name">Română</span>
+          <span class="lang-level">MATERNĂ</span>
+        </div>
+        <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+      </div>
+
+      <div class="lang-item">
+        <div class="lang-header">
+          <span class="lang-name">Turcă</span>
+          <span class="lang-level">C1 / B2</span>
+        </div>
+        <div class="lang-bar"><div class="lang-fill" style="width:85%"></div></div>
+      </div>
+
+      <div class="lang-item">
+        <div class="lang-header">
+          <span class="lang-name">Franceză</span>
+          <span class="lang-level">B1 / B2</span>
+        </div>
+        <div class="lang-bar"><div class="lang-fill" style="width:65%"></div></div>
+      </div>
+
+      <div class="lang-item">
+        <div class="lang-header">
+          <span class="lang-name">Engleză</span>
+          <span class="lang-level">B1</span>
+        </div>
+        <div class="lang-bar"><div class="lang-fill" style="width:50%"></div></div>
+      </div>
+
+      <div class="lang-item">
+        <div class="lang-header">
+          <span class="lang-name">Rusă</span>
+          <span class="lang-level">A1</span>
+        </div>
+        <div class="lang-bar"><div class="lang-fill" style="width:15%"></div></div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="sidebar-section">
+      <h3>Competențe Digitale</h3>
+      <div class="skills-list">
+        <span class="skill-tag">Microsoft Word</span>
+        <span class="skill-tag">PowerPoint</span>
+        <span class="skill-tag">Google Drive</span>
+        <span class="skill-tag">Social Media</span>
+        <span class="skill-tag">CapCut</span>
+        <span class="skill-tag">Facebook</span>
+        <span class="skill-tag">Instagram</span>
+        <span class="skill-tag">Twitter / X</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- About -->
+    <div class="about-block">
+      <p>Sunt o persoană motivată, empatică și deschisă spre învățare, pasionată de dezvoltarea personală și profesională. Studiez în paralel în două universități, ceea ce reflectă seriozitatea și capacitatea mea de organizare. Îmi doresc o carieră care combină abilitățile practice cu dimensiunea umană și creativă.</p>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+      <h2>Educație &amp; Formare</h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="tl-date">2024<br>– prezent</div>
+          <div class="tl-content">
+            <div class="tl-type">Universitate</div>
+            <div class="tl-title">Universitatea „Dunărea de Jos"</div>
+            <div class="tl-sub">Facultatea Transfrontalieră · Cahul, Moldova</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="tl-date">2024<br>– prezent</div>
+          <div class="tl-content">
+            <div class="tl-type">Universitate</div>
+            <div class="tl-title">Universitatea de Stat „Bogdan Petriceicu Hasdeu"</div>
+            <div class="tl-sub">Cahul, Moldova</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="tl-date">2021 – 2024</div>
+          <div class="tl-content">
+            <div class="tl-type">Liceu</div>
+            <div class="tl-title">Liceul Teoretic „Dimitrie Cantemir"</div>
+            <div class="tl-sub">Cantemir, Moldova</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="tl-date">2012 – 2021</div>
+          <div class="tl-content">
+            <div class="tl-type">Gimnaziu</div>
+            <div class="tl-title">Instituția Publică Gimnaziul „Delta"</div>
+            <div class="tl-sub">Tartaul, Cantemir, Moldova</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Skills summary -->
+    <div class="section">
+      <h2>Competențe</h2>
+      <div style="margin-top:18px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="padding:14px 16px; border:1px solid var(--rule); border-radius:8px;">
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Organizare</div>
+          <div style="font-size:13px;color:var(--ink);">Capacitate de a gestiona simultan două programe universitare și responsabilități multiple.</div>
+        </div>
+        <div style="padding:14px 16px; border:1px solid var(--rule); border-radius:8px;">
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Comunicare</div>
+          <div style="font-size:13px;color:var(--ink);">Multilingvă (română, turcă, franceză, engleză), abilități interpersonale și empatie.</div>
+        </div>
+        <div style="padding:14px 16px; border:1px solid var(--rule); border-radius:8px;">
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Digital &amp; Media</div>
+          <div style="font-size:13px;color:var(--ink);">Editare video (CapCut), Microsoft Office, gestiunea rețelelor de socializare.</div>
+        </div>
+        <div style="padding:14px 16px; border:1px solid var(--rule); border-radius:8px;">
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Creativ</div>
+          <div style="font-size:13px;color:var(--ink);">Pasiune pentru scriere creativă și poezie; abilitatea de a comunica idei cu autenticitate.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hobbies -->
+    <div class="section">
+      <h2>Interese &amp; Hobby-uri</h2>
+      <div style="margin-top:18px; display:flex; flex-direction:column; gap:10px;">
+        <div class="hobbies-item">
+          <span class="hobby-icon">✍️</span>
+          <p>Compunerea și publicarea poeziilor — pasiune pentru exprimarea creativă și literatura română.</p>
+        </div>
+        <div class="hobbies-item">
+          <span class="hobby-icon">🌐</span>
+          <p>Limbi străine și culturi — interes activ pentru comunicare interculturală și multilingvism.</p>
+        </div>
+        <div class="hobbies-item">
+          <span class="hobby-icon">📱</span>
+          <p>Social media &amp; content creation — creare și editare de conținut digital pentru platforme online.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>
