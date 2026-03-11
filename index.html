@@ -95,6 +95,13 @@
     font-weight: 300;
     color: white;
     letter-spacing: 2px;
+    overflow: hidden;
+  }
+
+  .photo-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .name-block {
@@ -364,7 +371,9 @@
   <aside class="sidebar">
     <div class="photo-wrap">
       <div class="photo-ring">
-        <div class="photo-inner">MM</div>
+        <div class="photo-inner">
+          <img src="me.jpeg" alt="Mihaela Mitrofan">
+        </div>
       </div>
     </div>
 
